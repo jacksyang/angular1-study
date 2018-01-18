@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="xy_module">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<body>
+    <!--视图-->
+    <div ng-controller="xyCtrl">
+
+        <div ng-repeat="item in testMy">{{item.dictName}}</div>
+
+
+
+
+
+    </div>
+    <div>
+
+    </div>
+</body>
+<script src="angular.js"></script>
+<script>
+    //   在很多服务中，比如 $location 服务，它可以使用 DOM 中存在的对象，类似 window.location 对象，但 window.location 对象在 AngularJS 应用中有一定的局限性。
+
+    //   AngularJS 会一直监控应用，处理事件变化， AngularJS 使用 $location 服务比使用 window.location 对象更好。
+    var app = angular.module('xy_module', []);
+
+    app.controller('xyCtrl', ["$rootScope", "$scope", "$timeout", "Constant", function ($rootScope, $scope, $timeout,
+        Constant) {
+        $scope.a = 0;
+
+
+        $scope.testMy = Constant.RECHARGE_STATUS;
+ 
+
+        //$timeout 比原生的settimeout 多了一个刷新视图的操作
+        /*  $timeout(function(){
+              $scope.username = new Date().toLocaleString();
+          },1000)*/
+    }]);
+
+    app.constant("Constant", {
+
+
+            CREDIT_ACCOUNT_STATUS_OBJECT: {
+                0: '未激活',
+                1: '已激活',
+                2: '冻结禁用'
+            },
+            RECHARGE_STATUS: [{
+                'dictId': 1,
+                'dictName': '可充值'
+            }, {
+                'dictId': 2,
+                'dictName': '不可充值'
+            }]
+        }
+
+
+    )
+</script>
+
+</html>

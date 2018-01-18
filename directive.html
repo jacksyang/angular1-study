@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="xy_module">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<body>
+    <!--视图-->
+    <div ng-controller="xyCtrl">
+
+        <!-- <div ng-repeat="item in testMy">{{item.dictName}}</div> -->
+        <hello></hello>
+        <hello1></hello1>
+        <expander class='expander' expander-title='title'>
+
+
+
+
+
+    </div>
+    <div>
+
+    </div>
+</body>
+<script src="angular.js"></script>
+<script>
+    //   在很多服务中，比如 $location 服务，它可以使用 DOM 中存在的对象，类似 window.location 对象，但 window.location 对象在 AngularJS 应用中有一定的局限性。
+
+    //   AngularJS 会一直监控应用，处理事件变化， AngularJS 使用 $location 服务比使用 window.location 对象更好。
+    var app = angular.module('xy_module', []);
+
+    app.controller('xyCtrl', ["$rootScope", "$scope", "$timeout", function ($rootScope, $scope, $timeout) {
+        $scope.a = 0;
+        $scope.title="你好，前端"
+        
+
+
+
+
+
+        //$timeout 比原生的settimeout 多了一个刷新视图的操作
+        /*  $timeout(function(){
+              $scope.username = new Date().toLocaleString();
+          },1000)*/
+    }]);
+
+    app.directive("hello", function () {
+            return {
+                restrict:"E",
+                template:"<div>钱包行云</div>",
+                replace:true,
+
+            }
+
+
+        }
+
+
+    )
+    app.directive("hello1", function () {
+            return {
+                restrict:"E",
+                template:"<div>钱包行云</div>",
+                transclude:true,
+
+            }
+
+
+        }
+
+
+    )
+    app.directive('expander', function() {
+    return {
+        restrict : 'EA',
+        replace : true,
+        transclude : true,
+        scope : {
+            title : '=expanderTitle'
+        },
+        template : '<div>'
+                 + '<div class="title" ng-click="toggle()">{{title}}</div>'
+                 + '<div  ng-if="showMe" >123123</div>'
+                 + '</div>',
+        link : function(scope, element, attrs) {
+            scope.showMe = false;
+            scope.toggle = function toggle() {
+                scope.showMe = !scope.showMe;
+            }
+        }
+    }
+})
+</script>
+
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="xy_module">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style lang="">
+    .red{
+        color:red;
+    }
+    
+    .yellow{
+        color:yellow;
+    }
+    
+    .black{
+        color:black;
+    }
+    
+</style>
+<script src="angular.js"></script>
+
+<body>
+    <!--视图-->
+    <div ng-controller="xyCtrl" ng-cloak="">
+        
+         <div  ng-class="{0:'red',1:'yellow',2:'black'}[test]" ng-mouseenter="enter()"  ng-mouseleave="leave()">
+
+
+
+
+
+
+
+            测试文件
+         </div>
+
+    </div>
+   
+
+
+    <div>
+
+    </div>
+</body>
+
+<script>
+
+    angular.module('xy_module', []);
+
+    angular.module('xy_module').controller('xyCtrl', function ($rootScope, $scope) {
+        $scope.test=0;
+        $scope.enter=function(){
+            $scope.test=1;
+            
+        }
+        $scope.leave=function(){
+            $scope.test=2;
+            
+        }
+      
+      
+    
+        //settimeout()
+        //$timeout 比原生的settimeout 多了一个刷新视图的操作
+        /*  $timeout(function(){
+              $scope.username = new Date().toLocaleString();
+          },1000)*/
+    });
+</script>
+
+</html>
