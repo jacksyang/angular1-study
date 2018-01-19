@@ -33,65 +33,48 @@
 
     app.controller('xyCtrl', ["$rootScope", "$scope", "$timeout", function ($rootScope, $scope, $timeout) {
         $scope.a = 0;
-        $scope.title="你好，前端"
-        
-
-
-
-
-
+        $scope.title = "你好，前端"
         //$timeout 比原生的settimeout 多了一个刷新视图的操作
         /*  $timeout(function(){
               $scope.username = new Date().toLocaleString();
           },1000)*/
     }]);
-
     app.directive("hello", function () {
             return {
-                restrict:"E",
-                template:"<div>钱包行云</div>",
-                replace:true,
-
+                restrict: "E",
+                template: "<div>钱包行云</div>",
+                replace: true,
             }
-
-
         }
-
-
     )
     app.directive("hello1", function () {
             return {
-                restrict:"E",
-                template:"<div>钱包行云</div>",
-                transclude:true,
-
+                restrict: "E",
+                template: "<div>钱包行云</div>",
+                transclude: true,
             }
-
-
         }
-
-
     )
-    app.directive('expander', function() {
-    return {
-        restrict : 'EA',
-        replace : true,
-        transclude : true,
-        scope : {
-            title : '=expanderTitle'
-        },
-        template : '<div>'
-                 + '<div class="title" ng-click="toggle()">{{title}}</div>'
-                 + '<div  ng-if="showMe" >123123</div>'
-                 + '</div>',
-        link : function(scope, element, attrs) {
-            scope.showMe = false;
-            scope.toggle = function toggle() {
-                scope.showMe = !scope.showMe;
+    app.directive('expander', function () {
+        return {
+            restrict: 'EA',
+            replace: true,
+            transclude: true,
+            scope: {
+                title: '=expanderTitle'
+            },
+            template: '<div>' +
+                '<div class="title" ng-click="toggle()">{{title}}</div>' +
+                '<div  ng-if="showMe" >123123</div>' +
+                '</div>',
+            link: function (scope, element, attrs) {
+                scope.showMe = false;
+                scope.toggle = function toggle() {
+                    scope.showMe = !scope.showMe;
+                }
             }
         }
-    }
-})
+    })
 </script>
 
 </html>
